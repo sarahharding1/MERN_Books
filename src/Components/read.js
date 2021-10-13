@@ -3,7 +3,7 @@ import Movies from './movies';
 
 class Read extends Component{
     //stores JSON data
-    state = {
+    state = { // 'state' used to represent data. here we have an object, inside an array, which is inside an object.
         mymovies: [
             {
             "Title": "Captain America: Civil War",
@@ -27,7 +27,7 @@ class Read extends Component{
             "Poster": "https://m.media-amazon.com/images/M/MV5BMjMxNjY2MDU1OV5BMl5BanBnXkFtZTgwNzY1MTUwNTM@._V1_SX300.jpg" }
         ]
     };
-
+        // here we have the render method which is responsible for describing the view to be rendered to the browser window
         render(){
             return(
                 <div>
