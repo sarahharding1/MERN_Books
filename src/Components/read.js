@@ -6,7 +6,7 @@ class Read extends Component{
 
         componentDidMount() {
             // axios.get is called a promise
-            axios.get('https://jsonblob.com/api/jsonblob/894944504570986496')
+            axios.get('http://localhost:4000/api/movies')
             .then((response)=>{ //arrow function
                 // allows us to set a state
                 this.setState({mymovies: response.data.movies})
