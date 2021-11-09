@@ -11,9 +11,9 @@ class MovieItem extends Component {
           <Card.Header>Quote</Card.Header>
           <Card.Body>
             <blockquote className="blockquote mb-0">
-              <h3>{this.props.movie.Title}</h3>
-              <img src={this.props.movie.Poster}></img>
-              <p>{this.props.movie.Year}</p>
+              <h3>{this.props.movie.title}</h3>
+              <img src={this.props.movie.poster}></img>
+              <p>{this.props.movie.year}</p>
               <footer className="blockquote-footer">
                 All rights reserved <cite title="Source Title">Marvel Studios</cite>
               </footer>

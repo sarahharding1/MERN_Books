@@ -3,6 +3,7 @@ const app = express()
 const port = 4000
 const cors = require('cors');
 const bodyParser = require("body-parser");
+const mongoose = require('mongoose');
 
 app.use(cors());
 app.use(function(req, res, next) {
@@ -11,40 +12,68 @@ res.header("Access-Control-Allow-Origin", "*"); res.header("Access-Control-Allow
 next();
 });
 
-// parse app
+// Parse app
 app.use(bodyParser.urlencoded({ extended: false }))
 
-// parse app/json
+// Parse app/json
 app.use(bodyParser.json())
+
+// Connect to our mongoDB
+const myConnectionString = 'mongodb+srv://admin:admin@cluster0.wynng.mongodb.net/movies?retryWrites=true&w=majority'; // Connection string from MongoDB. Replaced password and database name.
+mongoose.connect(myConnectionString, {useNewUrlParser: true});
+
+const Schema = mongoose.Schema;
+
+
+// Creating a Schema to tell the database what to store in document
+var movieSchema = new Schema({
+    title:String,
+    year:String,
+    poster:String
+});
+
+// Movie model allows me to write data into a database. Can store multiple models.
+var MovieModel = mongoose.model("movie", movieSchema);
+
+// Defining an 'ID' parameter. Looking for a movie with that ID in the Url
+app.get('/api/movies/:id', (req,res) =>{
+    console.log(req.params.id);
+
+
+    // Returns a movie with that ID
+    MovieModel.findById(req.params.id, (err, data) =>{
+        res.json(data);
+    })
+})
+
 
 
 app.get('/api/movies', (req, res)=>{
-        
-    const mymovies = [
-        {
-            "Title": "Captain America: Civil War",
-            "Year": "2016",
-            "imdbID": "tt3498820",
-            "Type": "movie",
-            "Poster": "https://m.media-amazon.com/images/M/MV5BMjQ0MTgyNjAxMV5BMl5BanBnXkFtZTgwNjUzMDkyODE@._V1_SX300.jpg" },
+    // REMOVED JSON. NO NEED TO HARDCODE JSON DATA
+   
+    MovieModel.find((err, data)=>{
+        res.json(data);
+    })
 
-            {
-            "Title": "Charlie Wilson's War", 
-            "Year": "2007",
-            "imdbID": "tt0472062",
-            "Type": "movie",
-            "Poster": "https://m.media-amazon.com/images/M/MV5BMTgwMDgwMDc4MF5BMl5BanBnXkFtZTYwOTU3MDM4._V1_SX300.jpg" }
-    ];
-    res.status(200).json({
-        message: "this is a message",
-        movies: mymovies});
-} )
+    // REMOVED STATUS MESSAGE
+
+})
 
 app.post('/api/movies', (req, res) =>{
     console.log('movie received');
     console.log(req.body.title);
     console.log(req.body.year);
     console.log(req.body.poster);
+    
+    
+    MovieModel.create({
+        title: req.body.title,
+        year: req.body.year,
+        poster: req.body.poster
+    })
+
+    res.send('Item Added');
+
 })
 
 app.listen(port, () => {
