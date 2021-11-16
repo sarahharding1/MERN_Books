@@ -35,6 +35,16 @@ var movieSchema = new Schema({
 // Movie model allows me to write data into a database. Can store multiple models.
 var MovieModel = mongoose.model("movie", movieSchema);
 
+
+//Listening for a put request
+ app.put('/api/movies/:id', (req, res) => {
+     console.log("Updating: "+req.params.id);
+     MovieModel.findByIdAndUpdate(req.params.id, req.body, {new:true}, //pass to database and update
+         (err,data)=>{
+             res.send(data);
+         })
+ })
+
 // Defining an 'ID' parameter. Looking for a movie with that ID in the Url
 app.get('/api/movies/:id', (req,res) =>{
     console.log(req.params.id);

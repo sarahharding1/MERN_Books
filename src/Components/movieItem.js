@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Movies from "./movies";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Card } from "react-bootstrap";
+import {Link} from 'react-router-dom';
 
 class MovieItem extends Component {
   render() {
@@ -19,6 +20,7 @@ class MovieItem extends Component {
               </footer>
             </blockquote>
           </Card.Body>
+          <Link to={"/edit/" +this.props.movie._id} className="btn btn-primary">Edit</Link>
         </Card>
       </div>
     );

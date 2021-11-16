@@ -8,6 +8,7 @@ import { Navbar, Nav, Container } from "react-bootstrap";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Read from "./Components/read";
 import Create from "./Components/create";
+import Edit from "./Components/edit";
 
 // extends keyword is inherinted from the component class
 class App extends Component {
@@ -32,6 +33,7 @@ class App extends Component {
             <Route path="/home" component={Content} exact />
             <Route path="/create" component={Create} exact />
             <Route path="/read" component={Read} exact />
+            <Route path={"/edit/:id"} component={Edit}/>
           </Switch>
 
           {/* Removed for Router installation */}
