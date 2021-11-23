@@ -36,6 +36,19 @@ var movieSchema = new Schema({
 var MovieModel = mongoose.model("movie", movieSchema);
 
 
+//Listening for a Delete request
+app.delete('/api/movies/:id', (req,res)=>{
+    console.log('deleting: '+req.params.id);
+
+
+    MovieModel.deleteOne({_id:req.params.id},
+        (error, data)=>{
+            if(error)
+            res.send(error);
+            res.send(data);
+        })
+})
+
 //Listening for a put request
  app.put('/api/movies/:id', (req, res) => {
      console.log("Updating: "+req.params.id);
