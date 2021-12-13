@@ -6,33 +6,33 @@ class Create extends Component{
     constructor(){
         super();
         this.handleSubmit = this.handleSubmit.bind(this);
-        this.onChangeMovieName = this.onChangeMovieName.bind(this);
+        this.onChangeBookName = this.onChangeBookName.bind(this);
         this.onChangeYear = this.onChangeYear.bind(this);
-        this.onChangePoster = this.onChangePoster.bind(this);
+        this.onChangeCover  = this.onChangeCover.bind(this);
     
         this.state = {
             Title: '',
             Year: '',
-            Poster: ''
+            Cover: ''
             }
     }
         handleSubmit(event){
             console.log(
                 "Name: "+this.state.Title
                 +"Year: "+this.state.Year
-                +"Poster: "+this.state.Poster);
+                +"Cover: "+this.state.Cover);
                 event.preventDefault();
                 this.setState({
                     Title: '',
                     Year: '',
-                    Poster: ''
+                    Cover: ''
                 });
-                const newMovie = {
+                const newBook = {
                     title: this.state.Title,
                     year: this.state.Year,
-                    poster: this.state.Poster
+                    cover: this.state.Cover
                 }
-                axios.post('http://localhost:4000/api/movies', newMovie)
+                axios.post('http://localhost:4000/api/books', newBook)
                 .then((res)=>{
                     console.log(res);
                 })
@@ -42,7 +42,7 @@ class Create extends Component{
 
 
         }
-        onChangeMovieName(event){
+        onChangeBookName(event){
             this.setState({
                 Title: event.target.value
             })
@@ -56,9 +56,9 @@ class Create extends Component{
 
         }
 
-        onChangePoster(event){
+        onChangeCover(event){
             this.setState({
-                Poster: event.target.value
+                Cover: event.target.value
             })
 
         }
@@ -69,11 +69,11 @@ class Create extends Component{
                     <form onSubmit={this.handleSubmit} >
                         {/* JSX code in here to field the input */}
                         <div className="form-group">
-                            <label>Add Movie Name:  </label>
+                            <label>Add Book Title:  </label>
                             <input type="text"
                                 className="form-control"
                                 value={this.state.Title}
-                                onChange={this.onChangeMovieName}
+                                onChange={this.onChangeBookName}
                                 
                                 /> 
                        
@@ -81,7 +81,7 @@ class Create extends Component{
                         </div>
                     
                         <div className="form-group">
-                            <label>Add Year:  </label>
+                            <label>Add Book Year:  </label>
                             <input type="text"
                                 className="form-control"
                                 value={this.state.Year}
@@ -93,11 +93,11 @@ class Create extends Component{
                         </div>
 
                         <div className="form-group">
-                            <label>Add Poster:  </label>
+                            <label>Add Cover:  </label>
                             <input type="text"
                                 className="form-control"
-                                value={this.state.Poster}
-                                onChange={this.onChangePoster}
+                                value={this.state.Cover}
+                                onChange={this.onChangeCover}
                                 
                                 /> 
 

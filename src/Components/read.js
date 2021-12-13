@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Movies from './movies';
+import Books from './books';
 import axios from 'axios';
 
 class Read extends Component{
@@ -11,10 +11,10 @@ class Read extends Component{
         }
 
         ReloadData(){
-            axios.get('http://localhost:4000/api/movies')
+            axios.get('http://localhost:4000/api/books')
             .then((response)=>{ //arrow function
                 // allows us to set a state
-                this.setState({mymovies: response.data})
+                this.setState({mybooks: response.data})
             })
             .catch((error)=>{
                 console.log(error);
@@ -23,10 +23,10 @@ class Read extends Component{
 
         componentDidMount() {
             // axios.get is called a promise
-            axios.get('http://localhost:4000/api/movies')
+            axios.get('http://localhost:4000/api/books')
             .then((response)=>{ //arrow function
-                // allows us to set a state
-                this.setState({mymovies: response.data})
+                // looking for an array that has books in it
+                this.setState({mybooks: response.data.books})
             })
             .catch((error)=>{
                 console.log(error);
@@ -34,7 +34,7 @@ class Read extends Component{
 ;        }
     //stores JSON data
     state = { // 'state' used to represent data. here we have an object, inside an array, which is inside an object.
-        mymovies: [
+        mybooks: [
             // ** Hardcoded data. Replaced using API and JSON data
             // {
             // "Title": "Captain America: Civil War",
@@ -63,7 +63,7 @@ class Read extends Component{
             return(
                 <div>
                     <h1>Read Component is in here</h1>
-                    <Movies films={this.state.mymovies} ReloadData={this.ReloadData}></Movies>
+                    <books films={this.state.mybooks} ReloadData={this.ReloadData}></books>
                 </div>
             );
         }

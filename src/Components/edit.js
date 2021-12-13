@@ -6,14 +6,14 @@ class Edit extends Component{
     constructor(){
         super();
         this.handleSubmit = this.handleSubmit.bind(this);
-        this.onChangeMovieName = this.onChangeMovieName.bind(this);
+        this.onChangeBookName = this.onChangeBookName.bind(this);
         this.onChangeYear = this.onChangeYear.bind(this);
-        this.onChangePoster = this.onChangePoster.bind(this);
+        this.onChangeCover = this.onChangeCover.bind(this);
     
         this.state = {
             Title: '',
             Year: '',
-            Poster: ''
+            Cover: ''
             }
     }
     // Takes the ID from the record and apends it onto the URL 
@@ -24,7 +24,7 @@ class Edit extends Component{
             this.setState({
                 Title:response.data.title,
                 Year:response.data.year,
-                Poster:response.data.poster,
+                Cover:response.data.Cover,
                 _id:response.data._id
             })
         
@@ -35,28 +35,28 @@ class Edit extends Component{
             console.log(
                 "Name: "+this.state.Title
                 +"Year: "+this.state.Year
-                +"Poster: "+this.state.Poster);
+                +"Cover: "+this.state.Cover);
                 event.preventDefault();
                 this.setState({
                     Title: '',
                     Year: '',
-                    Poster: ''
+                    Cover: ''
                 });
-                const newMovie = {
+                const newBook = {
                     title: this.state.Title,
                     year: this.state.Year,
-                    poster: this.state.Poster
+                    Cover: this.state.Cover
                 }
 
                 // To prevent creating a new record we comment this out 
 
-                axios.put('http://localhost:4000/api/movies/' + this.state._id, newMovie)
+                axios.put('http://localhost:4000/api/books/' + this.state._id, newBook)
                 .then((response)=> {console.log(response)})
                 .catch();
 
 
         }
-        onChangeMovieName(event){
+        onChangeBookName(event){
             this.setState({
                 Title: event.target.value
             })
@@ -70,9 +70,9 @@ class Edit extends Component{
 
         }
 
-        onChangePoster(event){
+        onChangeCover(event){
             this.setState({
-                Poster: event.target.value
+                Cover: event.target.value
             })
 
         }
@@ -87,7 +87,7 @@ class Edit extends Component{
                             <input type="text"
                                 className="form-control"
                                 value={this.state.Title}
-                                onChange={this.onChangeMovieName}
+                                onChange={this.onChangeBookName}
                                 
                                 /> 
                        
@@ -107,11 +107,11 @@ class Edit extends Component{
                         </div>
 
                         <div className="form-group">
-                            <label>Edit Poster:  </label>
+                            <label>Edit Cover:  </label>
                             <input type="text"
                                 className="form-control"
-                                value={this.state.Poster}
-                                onChange={this.onChangePoster}
+                                value={this.state.Cover}
+                                onChange={this.onChangeCover}
                                 
                                 /> 
 
