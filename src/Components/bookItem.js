@@ -6,7 +6,7 @@ import {Link} from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
 import axios from 'axios';
 
-class BookItem extends Component {
+export class BookItem extends React.Component {
 
   constructor(){
     super();
@@ -20,7 +20,9 @@ class BookItem extends Component {
       .then(()=>{
         this.props.ReloadData();
       })
-      .catch();
+      .catch((error)=>{
+        console.log(error);
+    });
     }
 
   render() {
@@ -30,15 +32,16 @@ class BookItem extends Component {
           <Card.Header>Quote</Card.Header>
           <Card.Body>
             <blockquote className="blockquote mb-0">
-              <h3>{this.props.book.title}</h3>
-              <img src={this.props.book.cover}></img>
-              <p>{this.props.book.year}</p>
+              <h3>{this.props.book.Title}</h3>
+              <img src={this.props.book.Cover}></img>
+              <p>{this.props.book.Year}</p>
               <footer className="blockquote-footer">
                 All rights reserved <cite title="Source Title">Marvel Studios</cite>
               </footer>
             </blockquote>
           </Card.Body>
-          <Link to={"/edit/" +this.props.book._id} className="btn btn-primary">Edit</Link>
+          {/* link to change the URL to the doccument ID */}
+          <Link to={"/edit/"+this.props.book._id} className="btn btn-primary">Edit</Link>
           <Button variant="danger" onClick={this.DeleteBook}>Delete</Button>
         </Card>
       </div>

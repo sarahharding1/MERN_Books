@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 
-class Edit extends Component{
+class Edit extends React.Component{
 
     constructor(){
         super();
@@ -19,17 +19,19 @@ class Edit extends Component{
     // Takes the ID from the record and apends it onto the URL 
     componentDidMount(){
         console.log(this.props.match.params.id);
-        axios.get('http://localhost:4000/api/movies/'+this.props.match.params.id)
+        axios.get('http://localhost:4000/api/books/'+this.props.match.params.id)
         .then((response)=>{
             this.setState({
                 Title:response.data.title,
                 Year:response.data.year,
-                Cover:response.data.Cover,
+                Cover:response.data.cover,
                 _id:response.data._id
             })
         
         })
-        .catch();
+        .catch((error)=>{
+            console.log(error);
+        });
     }
         handleSubmit(event){
             console.log(
@@ -45,14 +47,18 @@ class Edit extends Component{
                 const newBook = {
                     title: this.state.Title,
                     year: this.state.Year,
-                    Cover: this.state.Cover
+                    cover: this.state.Cover,
+                    _id: this.state._id
                 }
 
-                // To prevent creating a new record we comment this out 
 
-                axios.put('http://localhost:4000/api/books/' + this.state._id, newBook)
-                .then((response)=> {console.log(response)})
-                .catch();
+                axios.put('http://localhost:4000/api/books/'+this.state._id, newBook)
+                .then((res)=> 
+                    {console.log(res.data)
+                    })
+                .catch((error)=>{
+                    console.log(error);
+                });
 
 
         }

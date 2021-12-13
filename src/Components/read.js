@@ -36,12 +36,10 @@ class Read extends Component{
     state = { // 'state' used to represent data. here we have an object, inside an array, which is inside an object.
         mybooks: [
             // ** Hardcoded data. Replaced using API and JSON data
-            // {
-            // "Title": "Captain America: Civil War",
-            // "Year": "2016",
-            // "imdbID": "tt3498820",
-            // "Type": "movie",
-            // "Poster": "https://m.media-amazon.com/images/M/MV5BMjQ0MTgyNjAxMV5BMl5BanBnXkFtZTgwNjUzMDkyODE@._V1_SX300.jpg" },
+            {
+            "Title": "Harry Potter 2",
+            "Year": "2016",
+            "Cover": "https://m.media-amazon.com/images/M/MV5BMjQ0MTgyNjAxMV5BMl5BanBnXkFtZTgwNjUzMDkyODE@._V1_SX300.jpg" }
 
             // {
             // "Title": "Charlie Wilson's War", 
@@ -63,7 +61,7 @@ class Read extends Component{
             return(
                 <div>
                     <h1>Read Component is in here</h1>
-                    <books films={this.state.mybooks} ReloadData={this.ReloadData}></books>
+                    <Books mybooks={this.state.mybooks} ReloadData={this.ReloadData}></Books>
                 </div>
             );
         }
