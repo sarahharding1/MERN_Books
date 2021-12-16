@@ -1,14 +1,26 @@
-import React, { Component } from 'react';
-import BookItem from './bookItem';
+import React, { Component } from "react";
+import BookItem from "./bookItem";
 
-class Books extends Component{
+class Books extends Component {
+  // constructor(props) {
+  //   super(props);
 
-    render(){
-        // map pulls the collection apart
-        return this.props.mybooks.map( (book)=>{ // arrow function
-            return <BookItem book={BookItem} ReloadData={this.props.ReloadData} key={book._id}></BookItem> // film.imdbID is a unique identifier to avoid infinate loop
-        })
-        }
+  //   console.log(this.props);
+  // }
+
+  render() {
+    // map pulls the bookArray array apart
+    return this.props.mybooks.map((book) => { // arrow function
+      return (
+        <BookItem
+        Books={book}
+          // ReloadData={this.props.ReloadData}
+          key={book._id}>
+
+        </BookItem>
+      ); // book._id is a unique identifier to avoid infinate loop
+    });
+  }
 }
 
 export default Books;
