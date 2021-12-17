@@ -4,6 +4,8 @@ import SearchStyle from "./searchStyle.css";
 import { Search } from 'react-bootstrap-icons';
 import Books from "./books";
 
+// My search functionality is commented out
+
 
 class SearchBar extends React.Component {
 
