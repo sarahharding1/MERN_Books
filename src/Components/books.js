@@ -10,7 +10,7 @@ class Books extends Component {
       return (
         <BookItem
         Books={book}
-          // ReloadData={this.props.ReloadData}
+          ReloadData={this.props.ReloadData}
           key={book._id}>
 
         </BookItem>

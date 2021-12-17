@@ -6,7 +6,7 @@ class Content extends Component {
     return (
       <div>
         <h1> Hello World</h1>
-        <h1>This is Data Rep and Que Lab2</h1>
+        <h1>This is my Books project</h1>
         <h2>It is {new Date().toLocaleTimeString()}.</h2>
       </div>
     );

@@ -14,7 +14,7 @@ class Read extends Component {
       .then((response) => {
         //arrow function
         // allows us to set a state
-        this.setState({ mybooks: response.data });
+        this.setState({ books: response.data });
       })
       .catch((error) => {
         console.log(error);
@@ -28,7 +28,7 @@ class Read extends Component {
       .then((response) => {
         //arrow function
         // looking for an array that has books in it
-        this.setState({ mybooks: response.data.books });
+        this.setState({ books: response.data });
       })
       .catch((error) => {
         console.log(error);
