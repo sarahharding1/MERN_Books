@@ -9,6 +9,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Read from "./Components/read";
 import Create from "./Components/create";
 import Edit from "./Components/edit";
+import SearchBar from "./Components/searchBar";
 
 // extends keyword is inherinted from the component class
 class App extends Component {
@@ -16,6 +17,7 @@ class App extends Component {
     return (
       <Router>
         <div className="App">
+        
           <Navbar bg="light" variant="light">
             <Container>
               <Navbar.Brand href="/home">Navbar</Navbar.Brand>
@@ -23,6 +25,7 @@ class App extends Component {
                 <Nav.Link href="/home">Home</Nav.Link>
                 <Nav.Link href="/create">Create</Nav.Link>
                 <Nav.Link href="/read">Read</Nav.Link>
+                <Nav.Link href="/searchBar">Search</Nav.Link>
               </Nav>
             </Container>
           </Navbar>
@@ -34,6 +37,8 @@ class App extends Component {
             <Route path="/create" component={Create} exact />
             <Route path="/read" component={Read} exact />
             <Route path={"/edit/:id"} component={Edit}/>
+            <Route path="/searchBar" component={SearchBar} />
+            
           </Switch>
 
           {/* Removed for Router installation */}
