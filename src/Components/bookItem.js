@@ -35,7 +35,10 @@ export class BookItem extends Component {
             <blockquote className="blockquote mb-0">
               <h3>{this.props.book.Title}</h3>
               <img src={this.props.book.Cover}></img>
+              <p>{this.props.book.Theme}</p>
               <p>{this.props.book.Year}</p>
+              <p>{this.props.book.Author}</p>
+              <p>{this.props.book.Rating}</p>
               <footer className="blockquote-footer">
                 All rights reserved{" "}
                 <cite title="Source Title">Marvel Studios</cite>

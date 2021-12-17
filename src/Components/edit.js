@@ -9,11 +9,17 @@ class Edit extends React.Component{
         this.onChangeBookName = this.onChangeBookName.bind(this);
         this.onChangeYear = this.onChangeYear.bind(this);
         this.onChangeCover = this.onChangeCover.bind(this);
+        this.onChangeTheme = this.onChangeTheme.bind(this);
+        this.onChangeAuthor = this.onChangeAuthor.bind(this);
+        this.onChangeRating = this.onChangeRating.bind(this);
     
         this.state = {
             Title: '',
             Year: '',
-            Cover: ''
+            Cover: '',
+            Theme: '',
+            Author: '',
+            Rating: ''
             }
     }
     // Takes the ID from the record and apends it onto the URL 
@@ -25,6 +31,9 @@ class Edit extends React.Component{
                 Title:response.data.title,
                 Year:response.data.year,
                 Cover:response.data.cover,
+                Theme:response.data.theme,
+                Author:response.data.author,
+                Rating:response.data.rating,
                 _id:response.data._id
             })
         
@@ -37,17 +46,26 @@ class Edit extends React.Component{
             console.log(
                 "Name: "+this.state.Title
                 +"Year: "+this.state.Year
-                +"Cover: "+this.state.Cover);
+                +"Cover: "+this.state.Cover
+                +"Theme: "+this.state.Theme
+                +"Author: "+this.state.Author
+                +"Rating: "+this.state.Rating);
                 event.preventDefault();
                 this.setState({
                     Title: '',
                     Year: '',
-                    Cover: ''
+                    Cover: '',
+                    Theme: '',
+                    Author: '',
+                    Rating: ''
                 });
                 const newBook = {
                     title: this.state.Title,
                     year: this.state.Year,
                     cover: this.state.Cover,
+                    theme: this.state.Theme,
+                    author: this.state.Author,
+                    rating: this.state.Rating,
                     _id: this.state._id
                 }
 
@@ -79,6 +97,27 @@ class Edit extends React.Component{
         onChangeCover(event){
             this.setState({
                 Cover: event.target.value
+            })
+
+        }
+
+        onChangeTheme(event){
+            this.setState({
+                Theme: event.target.value
+            })
+
+        }
+
+        onChangeAuthor(event){
+            this.setState({
+                Author: event.target.value
+            })
+
+        }
+
+        onChangeRating(event){
+            this.setState({
+                Rating: event.target.value
             })
 
         }
@@ -118,6 +157,39 @@ class Edit extends React.Component{
                                 className="form-control"
                                 value={this.state.Cover}
                                 onChange={this.onChangeCover}
+                                
+                                /> 
+
+                        </div>
+
+                        <div className="form-group">
+                            <label>Edit Theme:  </label>
+                            <input type="text"
+                                className="form-control"
+                                value={this.state.Theme}
+                                onChange={this.onChangeTheme}
+                                
+                                /> 
+
+                        </div>
+
+                        <div className="form-group">
+                            <label>Edit Author:  </label>
+                            <input type="text"
+                                className="form-control"
+                                value={this.state.Author}
+                                onChange={this.onChangeAuthor}
+                                
+                                /> 
+
+                        </div>
+
+                        <div className="form-group">
+                            <label>Edit Rating:  </label>
+                            <input type="text"
+                                className="form-control"
+                                value={this.state.Rating}
+                                onChange={this.onChangeRating}
                                 
                                 /> 
 

@@ -11,14 +11,6 @@ app.use('/static', express.static(path.join(__dirname, 'build//static')));
 const mongoose = require('mongoose');
 
 
-//Not required anymore as just have one domain
-app.use(cors());
-app.use(function(req, res, next) {
-res.header("Access-Control-Allow-Origin", "*"); res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS"); res.header("Access-Control-Allow-Headers",
-"Origin, X-Requested-With, Content-Type, Accept");
-next();
-});
-
 // Parse app
 app.use(bodyParser.urlencoded({ extended: false }))
 
@@ -36,7 +28,10 @@ const Schema = mongoose.Schema;
 var bookSchema = new Schema({
     title:String,
     year:String,
-    cover:String
+    cover:String,
+    theme:String,
+    author:String,
+    rating:String
 });
 
 // book model allows me to write data into a database. Can store multiple models.
@@ -92,12 +87,18 @@ app.post('/api/books', (req, res) =>{
     console.log(req.body.title);
     console.log(req.body.year);
     console.log(req.body.cover);
+    console.log(req.body.theme);
+    console.log(req.body.author);
+    console.log(req.body.rating);
     
     
     bookModel.create({
         title: req.body.title,
         year: req.body.year,
-        cover: req.body.cover
+        cover: req.body.cover,
+        theme: req.body.theme,
+        author: req.body.author,
+        rating: req.body.rating
     })
 
     res.send('Item Added');

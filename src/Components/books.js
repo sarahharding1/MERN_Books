@@ -2,11 +2,7 @@ import React, { Component } from "react";
 import BookItem from "./bookItem";
 
 class Books extends Component {
-  // constructor(props) {
-  //   super(props);
 
-  //   console.log(this.props);
-  // }
 
   render() {
     // map pulls the bookArray array apart
